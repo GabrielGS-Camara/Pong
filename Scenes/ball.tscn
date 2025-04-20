@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkxfrahkn5nng"]
+
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_45cmn"]
+[ext_resource type="Texture2D" uid="uid://5j28uacmfnjq" path="res://ball.png" id="2_xgmvj"]
+[ext_resource type="AudioStream" uid="uid://ct8ipmlsx7lm3" path="res://Sounds/apito.wav" id="3_swfd7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eto75"]
+size = Vector2(32, 32)
+
+[node name="Ball" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_45cmn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575.625, 320)
+rotation = 3.14159
+scale = Vector2(0.261111, -0.264445)
+texture = ExtResource("2_xgmvj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(576, 320)
+shape = SubResource("RectangleShape2D_eto75")
+
+[node name="Start" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_swfd7")

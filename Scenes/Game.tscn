@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://bep2b0gln0l40"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_dh6wa"]
+[ext_resource type="PackedScene" uid="uid://cacqnwrt2n5pn" path="res://Scenes/player.tscn" id="2_4tril"]
+[ext_resource type="PackedScene" uid="uid://dkxfrahkn5nng" path="res://Scenes/ball.tscn" id="3_gm3ob"]
+[ext_resource type="Texture2D" uid="uid://bfmn4g5cyegr7" path="res://Background.png" id="4_sv412"]
+[ext_resource type="Texture2D" uid="uid://b3osodllc0dck" path="res://separator.png" id="5_s0u5o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_td4w0"]
+size = Vector2(1197.88, 87.9879)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dh6wa")
+
+[node name="Top" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(582.75, -40)
+shape = SubResource("RectangleShape2D_td4w0")
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(8, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(578.125, 688)
+shape = SubResource("RectangleShape2D_td4w0")
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(24, 8)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-47.9963, 366.933)
+rotation = 1.5712
+shape = SubResource("RectangleShape2D_td4w0")
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1200, 392)
+rotation = 1.5712
+shape = SubResource("RectangleShape2D_td4w0")
+
+[node name="Player" parent="." instance=ExtResource("2_4tril")]
+position = Vector2(112, 336)
+
+[node name="Player2" parent="." instance=ExtResource("2_4tril")]
+position = Vector2(1008, 336)
+side = "p2"
+
+[node name="Ball" parent="." instance=ExtResource("3_gm3ob")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 16.0
+offset_right = 296.0
+offset_bottom = 88.0
+scale = Vector2(3.05382, 2.76261)
+text = "0"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 928.0
+offset_top = 16.0
+offset_right = 1032.0
+offset_bottom = 88.0
+scale = Vector2(3.0163, 2.78908)
+text = "0"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Grama" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(584, 336)
+scale = Vector2(2.43333, 1.93333)
+texture = ExtResource("4_sv412")
+
+[node name="Separador" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(576, 320)
+scale = Vector2(4, 1.72)
+texture = ExtResource("5_s0u5o")
+
+[connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
